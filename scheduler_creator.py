@@ -15,17 +15,17 @@ def loadSchedules():
             schedules = []
 
             # Create query to load the schedule records from the database and return a dictionary of the parameters
-            # TODO: finish this
-            cursor.execute("select * from test_table")
+            cursor.execute("select id, timestamp, repeat, filename, frequency from schedule")
 
             for row in cursor.fetchall():
                 # For each row in the result set create a dictionary of "parameters" for the scheduled job
-                # TODO: finish this
                 params = dict()
-                params['timestamp'] = ''
-                params['repeat'] = True
-                params['frequency'] = 800
-                params['filename'] = 'myFilename'
+                params['id'] = row[0]
+                params['timestamp'] = row[1]
+                params['repeat'] = bool(row[2])
+                params['filename'] = row[3]
+                params['frequency'] = row[4]
+
                 schedules.append(params)
 
             return schedules
