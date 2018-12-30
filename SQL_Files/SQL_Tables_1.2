@@ -1,0 +1,33 @@
+/*
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `password_hash` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+*/
+
+
+
+CREATE TABLE `recording` (
+  `id` int(11) NOT NULL,
+  `schedule` int(11) DEFAULT NULL,
+  `RSSI_file` longblob,
+  `recording` longblob,
+  PRIMARY KEY (`id`),
+  KEY `schedule_idx` (`schedule`),
+  CONSTRAINT `schedule` FOREIGN KEY (`schedule`) REFERENCES `schedule` (`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `schedule` (
+  `ID` int(11) NOT NULL,
+  `user` int(11) DEFAULT NULL,
+  `timestamp` varchar(45) DEFAULT NULL,
+  `repeat` tinyint(4) DEFAULT NULL,
+  `filename` varchar(45) DEFAULT NULL,
+  `frequency` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  //KEY `user_idx` (`user`),
+  // CONSTRAINT `user` FOREIGN KEY (`user`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
