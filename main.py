@@ -1,8 +1,10 @@
 import sys
+from thread import start_new
 
 import mysql
 from mysql.connector import Error
 
+from recording_thread import RecordingThread
 from scheduler_creator import loadSchedules
 
 '''
@@ -20,10 +22,17 @@ def reloadSchedulesFromDatabase():
     # Load the schedules from the database
     schedules = loadSchedules()
 
-    for parameters in schedules:
-        print('TODO: create scheduler with params: {}'.format(parameters))
+    threads = []
 
-    print(schedules)
+    schedules.append({'asdf':0})
+
+    for parameters in schedules:
+        recordingThread = RecordingThread(parameters)
+        recordingThread.start()
+        threads.append(recordingThread)
+
+    for thread in threads:
+        thread.join()
 
 # Save the given recording to the database.
 def saveRecording(rssiValues, recordingFilename, scheduleId):
