@@ -24,8 +24,6 @@ def reloadSchedulesFromDatabase():
 
     threads = []
 
-    schedules.append({'asdf':0})
-
     for parameters in schedules:
         recordingThread = RecordingThread(parameters)
         recordingThread.start()
