@@ -22,11 +22,14 @@ def loadSchedules():
             for row in cursor.fetchall():
                 # For each row in the result set create a dictionary of "parameters" for the scheduled job
                 params = dict()
-                params['id'] = row[0]
+                params['schedule_id'] = row[0]
                 params['timestamp'] = row[1]
-                params['repeat'] = bool(row[2])
-                params['filename'] = row[3]
-                params['frequency'] = row[4]
+                params['filename'] = row[2]
+                params['frequency'] = row[3]
+                params['hostname'] = row[4]
+                params['port'] = row[5]
+                params['band'] = row[6]
+                params['duration'] = row[7]
 
                 schedules.append(params)
 
