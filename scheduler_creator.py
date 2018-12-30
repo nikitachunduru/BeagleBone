@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
+import datetime
 
 from parameters import *
 
@@ -15,7 +16,8 @@ def loadSchedules():
             schedules = []
 
             # Create query to load the schedule records from the database and return a dictionary of the parameters
-            cursor.execute("select id, timestamp, repeat, filename, frequency from schedule")
+            now = datetime.datetime.now()
+            cursor.execute("SELECT * FROM schedule WHERE timestamp >= '{}'".format(now))
 
             for row in cursor.fetchall():
                 # For each row in the result set create a dictionary of "parameters" for the scheduled job
@@ -33,6 +35,7 @@ def loadSchedules():
             raise RuntimeError("Could not connect to database")
     except Error as e:
         print ("Error while connecting to MySQL", e)
+        raise e
     finally:
         # closing database connection.
         if (connection.is_connected()):
