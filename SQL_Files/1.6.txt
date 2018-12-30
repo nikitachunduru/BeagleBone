@@ -1,0 +1,19 @@
+CREATE TABLE `recording` (
+  `id` int(11) NOT NULL,
+  `schedule` int(11) NOT NULL,
+  `RSSI_file` longblob,
+  `recording` longblob,
+  PRIMARY KEY (`schedule`),
+  CONSTRAINT `schedule` FOREIGN KEY (`schedule`) REFERENCES `schedule` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `schedule` (
+  `ID` int(11) NOT NULL,
+  `timestamp` datetime DEFAULT NULL,
+  `filename` varchar(45) DEFAULT NULL,
+  `frequency` decimal(10,0) DEFAULT NULL,
+  `ip_address/hostname` varchar(20) DEFAULT NULL,
+  `port#` int(11) DEFAULT NULL,
+  `band` varchar(45) DEFAULT NULL,
+  `duration` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
