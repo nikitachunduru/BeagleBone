@@ -1,0 +1,11 @@
+Recap - 12/29
+Python-SQL 
+  Got the connector working with a test 
+  WOrking on a function to pass to scheduler
+SQL
+  Tables are done, working on getting foreign keys connected
+ Scheduler
+  Working on it
+ Python
+  Function record() takes params, records file, and returns the .wav and RSSI
+  
