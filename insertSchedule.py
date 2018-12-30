@@ -14,8 +14,8 @@ def insertSchedules(data):
         if connection.is_connected():
             cursor = connection.cursor()
 
-			dataValues = (data["timestamp"], data["repeat"], data["filename"], data["frequency"], data["IP_address"], data["Port_#"])
-            insert_stmp = "INSERT INTO schedule (timestamp, repeat, filename, frequency, IP_address, Port_#) VALUES (%s, %s, %s, %s, %s, %s)"
+			dataValues = (data["timestamp"], data["filename"], data["frequency"], data["hostname"], data["port"], data["band"], data[duration])
+            insert_stmp = "INSERT INTO schedule (timestamp, filename, frequency, hostname, port, band, duration) VALUES (%s, %s, %s, %s, %s, %s)"
 			
 			cursor.execute(insert_stmp, dataValues)
 
